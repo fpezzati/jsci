@@ -1,0 +1,20 @@
+version: '3'
+services:
+  wildfly:
+    image: 'jboss/wildfly'
+    volumes:
+     - '${PWD}/jsfcihelloworld/target/jsfcihelloworld.war:/opt/jboss/wildfly/standalone/deployments/jsfcihelloworld.war'
+    ports:
+     - '8080:8080'
+#    depends_on:
+#    - postgres
+#  postgres:
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres_password
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U postgres"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+  
