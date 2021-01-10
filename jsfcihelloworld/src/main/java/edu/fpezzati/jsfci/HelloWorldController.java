@@ -2,9 +2,11 @@ package edu.fpezzati.jsfci;
 
 import java.util.Date;
 
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 @Named(value = "helloworld")
+@RequestScoped
 public class HelloWorldController {
 
 	private String name;
