@@ -1,7 +1,9 @@
 version: '3'
 services:
   wildfly:
-    image: 'jboss/wildfly'
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./wildfly
     volumes:
      - '${PWD}/jsfcihelloworld/target/jsfcihelloworld.war:/opt/jboss/wildfly/standalone/deployments/jsfcihelloworld.war:rw'
     ports:

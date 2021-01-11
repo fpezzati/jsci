@@ -14,8 +14,8 @@ xmlns:h="http://java.sun.com/jsf/html">
         <h3>Now The time is <h:outputLabel> #{helloworld.currentTime()}</h:outputLabel></h3>
         Your Name Please?
         <h:inputText value="#{helloworld.name}"></h:inputText>
-        <h:commandButton value="Say Hello" action="result"></h:commandButton>
+        <h:commandButton value="Say Hello"></h:commandButton>
     </h:form>
-        <h:outputText value="#{hello}"></h:outputText>
+    Hello #{helloworld.name}
 </h:body>
 </html>
