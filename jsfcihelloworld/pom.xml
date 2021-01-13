@@ -44,6 +44,16 @@
 			<artifactId>primefaces</artifactId>
 			<version>7.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.4.27.Final</version>
+		</dependency>
+                     <dependency>
+                         <groupId>postgresql</groupId>
+                         <artifactId>postgresql</artifactId>
+                         <version>42.0.0</version>
+                     </dependency>
 	</dependencies>
 
 	<build>
@@ -97,6 +107,30 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.2.2</version>
+				<configuration>
+					<changeLogFile>dbchangelog.xml</changeLogFile>
+					<url>jdbc:postgresql://localhost:5432/MYDATABASE</url>
+					<username>postgres</username>
+					<password>password</password>
+				</configuration>
+				<executions>
+					<execution>
+					<phase></phase>
+						<goals></goals>
+					</execution>
+				</executions>
+				<dependencies>
+                     <dependency>
+                         <groupId>postgresql</groupId>
+                         <artifactId>postgresql</artifactId>
+                         <version>42.0.0</version>
+                     </dependency>
+                 </dependencies>
 			</plugin>
 		</plugins>
 	</build>
