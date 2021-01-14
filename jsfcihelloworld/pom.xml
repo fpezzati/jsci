@@ -19,6 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<postgresql>42.2.0</postgresql>
 	</properties>
 
 	<dependencies>
@@ -49,11 +50,6 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.4.27.Final</version>
 		</dependency>
-                     <dependency>
-                         <groupId>postgresql</groupId>
-                         <artifactId>postgresql</artifactId>
-                         <version>42.0.0</version>
-                     </dependency>
 	</dependencies>
 
 	<build>
@@ -120,17 +116,17 @@
 				</configuration>
 				<executions>
 					<execution>
-					<phase></phase>
+						<phase></phase>
 						<goals></goals>
 					</execution>
 				</executions>
 				<dependencies>
-                     <dependency>
-                         <groupId>postgresql</groupId>
-                         <artifactId>postgresql</artifactId>
-                         <version>42.0.0</version>
-                     </dependency>
-                 </dependencies>
+					<dependency>
+						<groupId>postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>${postgresql}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

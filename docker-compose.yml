@@ -4,6 +4,8 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./wildfly
+    environment:
+      -
     volumes:
      - '${PWD}/jsfcihelloworld/target/jsfcihelloworld.war:/opt/jboss/wildfly/standalone/deployments/jsfcihelloworld.war:rw'
     ports:
@@ -13,6 +15,7 @@ services:
     depends_on:
     - postgres
   postgres:
+    image: 'postgres:10'
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres_password
