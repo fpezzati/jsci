@@ -1,3 +1,9 @@
 FROM jboss/wildfly
+ADD ./postgresql-42.2.0.jar /tmp/
+ADD ./configure.postgres.sh /tmp/
+USER root
+RUN chmod 777 /tmp/configure.postgres.sh
+USER 1000
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "/tmp/configure.postgres.sh"]
+#CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

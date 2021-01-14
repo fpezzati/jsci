@@ -5,23 +5,26 @@ services:
       dockerfile: Dockerfile.dev
       context: ./wildfly
     environment:
-      -
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - PGHOST=${PG_HOST}
+      - PGPORT=${PG_PORT}
+      - PGDATABASE=${PG_DATABASE}
     volumes:
      - '${PWD}/jsfcihelloworld/target/jsfcihelloworld.war:/opt/jboss/wildfly/standalone/deployments/jsfcihelloworld.war:rw'
     ports:
-     - '8080:8080'
-     - '9990:9990'
-     - '8000:8000'
+     - '8080:${WFY_HTTP_PORT}'
+     - '9990:${WFY_ADMIN_PORT}'
+     - '8000:${WFY_DEBUG_PORT}'
     depends_on:
     - postgres
   postgres:
     image: 'postgres:10'
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
-  
