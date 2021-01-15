@@ -30,6 +30,18 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-weld</artifactId>
+			<version>21.0.2.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
@@ -114,12 +126,12 @@
 					<username>${PG_USER}</username>
 					<password>${PG_PASSWORD}</password>
 				</configuration>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase></phase> -->
-<!-- 						<goals></goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <phase></phase> -->
+				<!-- <goals></goals> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 				<dependencies>
 					<dependency>
 						<groupId>postgresql</groupId>

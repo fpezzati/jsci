@@ -13,9 +13,9 @@ services:
     volumes:
      - '${PWD}/jsfcihelloworld/target/jsfcihelloworld.war:/opt/jboss/wildfly/standalone/deployments/jsfcihelloworld.war:rw'
     ports:
-     - '8080:${WFY_HTTP_PORT}'
-     - '9990:${WFY_ADMIN_PORT}'
-     - '8000:${WFY_DEBUG_PORT}'
+     - '${WFY_HTTP_PORT}:8080'
+     - '${WFY_ADMIN_PORT}:9990'
+     - '${WFY_DEBUG_PORT}:8000'
     depends_on:
     - postgres
   postgres:
