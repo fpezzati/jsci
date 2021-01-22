@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "usage: ./configure.and.run.wildfly.sh PG_HOST PG_PORT PG_DATABASE PG_USER PG_PASSWORD"
+echo "usage: ./configure.and.run.wildfly.sh PG_HOST PG_PORT PG_DATABASE PG_USER PG_PASSWORD WFY_DEBUG_PORT"
 function wait_for_server() {
   until `/opt/jboss/wildfly/bin/jboss-cli.sh -c ":read-attribute(name=server-state)" 2> /dev/null | grep -q running`; do
     sleep 1
@@ -18,4 +18,5 @@ echo 'data-source add --jndi-name=java:jboss/datasources/postgres --name=postgre
 echo "shutting wildfly down"
 /opt/jboss/wildfly/bin/jboss-cli.sh -c ":shutdown"
 echo "booting widlfly again"
-/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+
+/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug 0.0.0.0:8787

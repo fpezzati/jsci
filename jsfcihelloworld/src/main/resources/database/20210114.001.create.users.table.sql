@@ -5,5 +5,5 @@ create table users (
   name varchar(50) NOT NULL,
   surname varchar(50) NOT NULL,
   age integer,
-  since date NOT NULL DEFAULT
+  since date NOT NULL DEFAULT CURRENT_DATE
 );

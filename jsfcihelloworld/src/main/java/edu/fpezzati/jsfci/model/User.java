@@ -30,28 +30,48 @@ public class User implements Serializable {
 	@Column
 	private Date since;
 
+	public UUID getId() {
+		return id;
+	}
+
+	public User setId(UUID id) {
+		this.id = id;
+		return this;
+	}
+
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+
+	public User setName(String name) {
 		this.name = name;
+		return this;
 	}
+
 	public String getSurname() {
 		return surname;
 	}
-	public void setSurname(String surname) {
+
+	public User setSurname(String surname) {
 		this.surname = surname;
+		return this;
 	}
+
 	public int getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+
+	public User setAge(int age) {
 		this.age = age;
+		return this;
 	}
+
 	public Date getSince() {
 		return since;
 	}
-	public void setSince(Date since) {
+
+	public User setSince(Date since) {
 		this.since = since;
+		return this;
 	}
 }

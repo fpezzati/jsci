@@ -11,16 +11,23 @@
 <h:body>
 	<pf:dataTable var="user" value="#{usercontroller.users}">
 		<pf:column headerText="name">
-			<h:outputText value="user.name" />
+			<h:outputText value="#{user.name}" />
 		</pf:column>
 		<pf:column headerText="surname">
-			<h:outputText value="user.surname" />
+			<h:outputText value="#{user.surname}" />
 		</pf:column>
 		<pf:column headerText="age">
-			<h:outputText value="user.age" />
+			<h:outputText value="#{user.age}" />
 		</pf:column>
 		<pf:column headerText="since">
-			<h:outputText value="user.since" />
+			<h:outputText value="#{user.since}" />
+		</pf:column>
+		<pf:column>
+			<pf:outputPanel>
+				<h:outputLink rendered="#{usercontroller.isEditable(user)}" value="#{usercontroller.getEditLink(user)}">
+				  edit!
+				</h:outputLink>
+			</pf:outputPanel>
 		</pf:column>
 	</pf:dataTable>
 </h:body>

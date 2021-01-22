@@ -19,7 +19,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<postgresql>42.2.0</postgresql>
+		<PG_HOST>localhost</PG_HOST>
+		<PG_PORT>5432</PG_PORT>
+		<PG_DATABASE>postgres</PG_DATABASE>
+		<PG_USER>postgres</PG_USER>
+		<PG_PASSWORD>postgres_password</PG_PASSWORD>
 	</properties>
 
 	<dependencies>
@@ -61,6 +65,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.4.27.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
 		</dependency>
 	</dependencies>
 
@@ -121,24 +130,19 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.2.2</version>
 				<configuration>
-					<changeLogFile>dbchangelog.xml</changeLogFile>
+					<changeLogFile>./src/main/resources/database/dbchangelog.xml</changeLogFile>
 					<url>jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}</url>
 					<username>${PG_USER}</username>
 					<password>${PG_PASSWORD}</password>
 				</configuration>
-				<!-- <executions> -->
-				<!-- <execution> -->
-				<!-- <phase></phase> -->
-				<!-- <goals></goals> -->
-				<!-- </execution> -->
-				<!-- </executions> -->
-				<dependencies>
-					<dependency>
-						<groupId>postgresql</groupId>
-						<artifactId>postgresql</artifactId>
-						<version>${postgresql}</version>
-					</dependency>
-				</dependencies>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>update</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
