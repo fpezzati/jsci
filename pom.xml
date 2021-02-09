@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>jsfcihelloworld</module>
+    <module>cucumba</module>
   </modules>
 </project>
