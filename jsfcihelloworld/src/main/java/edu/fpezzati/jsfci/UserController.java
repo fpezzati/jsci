@@ -29,6 +29,7 @@ public class UserController {
 		users.add(new User().setId(UUID.nameUUIDFromBytes("jay.bent".getBytes())).setAge(3).setName("jay").setSurname("bent").setSince(new Date()));
 		users.add(new User().setId(UUID.nameUUIDFromBytes("jeez.bent".getBytes())).setAge(4).setName("jeez").setSurname("bent").setSince(new Date()));
 		users.add(new User().setId(UUID.nameUUIDFromBytes("jack.bent".getBytes())).setAge(5).setName("jack").setSurname("bent").setSince(new Date()));
+		users.add(new User().setId(UUID.nameUUIDFromBytes("jona.bent".getBytes())).setAge(10).setName("jona").setSurname("bent").setSince(new Date()));
 	}
 
 	public List<User> getUsers() {

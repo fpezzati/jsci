@@ -6,26 +6,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pf="http://primefaces.org/ui">
 <h:head>
-	<title>Users</title>
+	<title>Kinds</title>
 </h:head>
 <h:body>
 	Users available
-	<pf:dataTable var="user" value="#{usercontroller.users}">
+	<pf:dataTable var="kind" value="#{kindcontroller.kinds}">
 		<pf:column headerText="name">
-			<h:outputText value="#{user.name}" />
-		</pf:column>
-		<pf:column headerText="surname">
-			<h:outputText value="#{user.surname}" />
-		</pf:column>
-		<pf:column headerText="age">
-			<h:outputText value="#{user.age}" />
-		</pf:column>
-		<pf:column headerText="since">
-			<h:outputText value="#{user.since}" />
+			<h:outputText value="#{kind.name}" />
 		</pf:column>
 		<pf:column>
 			<pf:outputPanel>
-				<h:outputLink rendered="#{usercontroller.isEditable(user)}" value="#{usercontroller.getEditLink(user)}">
+				<h:outputLink rendered="#{kindcontroller.isEditable(kind)}" value="#{kindcontroller.getEditLink(kind)}">
 				  edit!
 				</h:outputLink>
 			</pf:outputPanel>

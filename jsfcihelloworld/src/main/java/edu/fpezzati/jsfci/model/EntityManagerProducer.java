@@ -8,7 +8,7 @@ import javax.persistence.PersistenceUnit;
 
 public class EntityManagerProducer {
 
-	@PersistenceUnit(name = "jscihw")
+	@PersistenceUnit(unitName = "jscihw")
 	private EntityManagerFactory emf;
 
 	@Produces

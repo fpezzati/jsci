@@ -7,7 +7,12 @@ ENV POSTGRES_PASSWORD postgres
 ADD ./postgresql-42.2.0.jar /tmp/
 ADD ./configure.and.run.wildfly.sh /tmp/
 USER root
+RUN mkdir /usr/lib/dcevm
+#ADD ./java11-openjdk-dcevm-linux.tar.gz /usr/lib/
+#RUN chmod +x /usr/lib/dcevm-11.0.10+3/bin
 RUN chmod +x /tmp/configure.and.run.wildfly.sh
 USER jboss
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
-CMD ["/tmp/configure.and.run.wildfly.sh"] ["${PGHOST}"] ["${PGPORT}"] ["${PGDATABASE}"] ["${POSTGRES_USER}"] ["${POSTGRES_PASSWORD}"]
+#ENV JAVA_OPTS -Xms1g -Xmx1g -Dfile.encoding=UTF-8 -Dconsole.encoding=UTF-8 -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -XXaltjvm=/usr/lib/dcevm-11.0.10+3/lib/server -javaagent:/usr/lib/dcevm-11.0.10+3/lib/hotswap/hotswap-agent.jar -Dextra.classpath=/extra_class_path
+ENV JAVA_OPTS -Xms1g -Xmx1g -Dfile.encoding=UTF-8 -Dconsole.encoding=UTF-8 -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true
+CMD ["sh", "-c", "/tmp/configure.and.run.wildfly.sh ${PGHOST} ${PGPORT} ${PGDATABASE} ${POSTGRES_USER} ${POSTGRES_PASSWORD}"]
