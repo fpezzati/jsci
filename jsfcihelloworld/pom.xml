@@ -157,7 +157,7 @@
 					<url>jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}</url>
 					<username>${PG_USER}</username>
 					<password>${PG_PASSWORD}</password>
-					<referenceUrl>hibernate:ejb3:jscihw</referenceUrl>
+					<referenceUrl>hibernate:ejb3:jscihw?dialect=org.hibernate.dialect.PostgreSQL95Dialect</referenceUrl>
 					<referenceDriver>liquibase.ext.hibernate.database.connection.HibernateDriver</referenceDriver>
 				</configuration>
 				<executions>

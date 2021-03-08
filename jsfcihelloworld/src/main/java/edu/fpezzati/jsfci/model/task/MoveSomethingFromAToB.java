@@ -6,10 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "move_something")
 public class MoveSomethingFromAToB extends Task {
 
 	private static final long serialVersionUID = 2490152011240832084L;

@@ -8,13 +8,16 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "move_something")
 public abstract class Task implements Serializable {
 
 	private static final long serialVersionUID = 3982223739017643309L;
 
 	@Id
+	@Column(name = "id")
 	private UUID id;
 
 	@Column(name = "starts_at")
