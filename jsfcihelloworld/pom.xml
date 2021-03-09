@@ -155,9 +155,10 @@
 				<configuration>
 					<changeLogFile>./src/main/resources/database/dbchangelog.xml</changeLogFile>
 					<url>jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}</url>
+					<driver>org.postgresql.Driver</driver>
 					<username>${PG_USER}</username>
 					<password>${PG_PASSWORD}</password>
-					<referenceUrl>hibernate:ejb3:jscihw?dialect=org.hibernate.dialect.PostgreSQL95Dialect</referenceUrl>
+					<referenceUrl>hibernate:ejb3:jscihw?dialect=org.hibernate.dialect.PostgreSQL10Dialect</referenceUrl>
 					<referenceDriver>liquibase.ext.hibernate.database.connection.HibernateDriver</referenceDriver>
 				</configuration>
 				<executions>
