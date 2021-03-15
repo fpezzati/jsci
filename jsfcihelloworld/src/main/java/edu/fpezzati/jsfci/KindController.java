@@ -33,6 +33,14 @@ public class KindController {
 		return em.find(Kind.class, UUID.fromString(id));
 	}
 
+	public void save(Kind kind) {
+		em.persist(kind);
+	}
+
+	public void update(Kind kind) {
+		em.merge(kind);
+	}
+
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}

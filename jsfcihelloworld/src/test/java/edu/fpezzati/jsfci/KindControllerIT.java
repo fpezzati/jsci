@@ -10,9 +10,11 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.jboss.weld.junit5.EnableWeld;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +44,7 @@ public class KindControllerIT {
 	@Inject
 	private KindController sut;
 	private EntityManager em;
+	private EntityTransaction transaction;
 
 
 	@BeforeAll
@@ -66,13 +69,36 @@ public class KindControllerIT {
 	@BeforeEach
 	public void initEach() {
 		em = emf.createEntityManager();
+		transaction = em.getTransaction();
+		transaction.setRollbackOnly();
 		sut = new KindController();
 		sut.setEntityManager(em);
 	}
 
+	@AfterEach
+	public void disposeEach() {
+		em.clear();
+		em.close();
+	}
+
 	@Test
 	public void kindControllerCanFetchData() {
-		em.createNativeQuery("select table_name from information_schema.tables").getResultList();
 		Assertions.assertEquals(4, sut.getKinds().size());
+	}
+
+	@Test
+	public void kindControllerCanCreateData() {
+		UUID uuid = UUID.randomUUID();
+		sut.save(new Kind().setId(uuid).setName("test"));
+		Assertions.assertEquals(4, sut.getKinds().size());
+		Assertions.assertNotNull(em.find(Kind.class, uuid));
+	}
+
+	@Test
+	public void kindControllerCanUpdateData() {
+		Kind fetched = sut.getKinds().get(0);
+		fetched.setName("changed");
+		sut.update(fetched);
+		Assertions.assertEquals("changed", sut.getKindById(fetched.getId().toString()).getName());
 	}
 }
