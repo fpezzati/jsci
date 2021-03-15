@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 
 import org.jboss.weld.junit5.EnableWeld;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
@@ -37,6 +38,7 @@ public class KindControllerIT {
 
 	@Inject
 	private KindController sut;
+	private EntityManager em;
 
 
 	@BeforeAll
@@ -58,9 +60,15 @@ public class KindControllerIT {
 		emf = Persistence.createEntityManagerFactory("jscihw", entityManagerFactoryProperties);
 	}
 
+	@BeforeEach
+	public void initEach() {
+		em = emf.createEntityManager();
+		sut = new KindController();
+		sut.setEntityManager(em);
+	}
+
 	@Test
 	public void kindControllerCanFetchData() {
-		EntityManager em = emf.createEntityManager();
 		em.createNativeQuery("select table_name from information_schema.tables").getResultList();
 		sut.getKinds();
 	}

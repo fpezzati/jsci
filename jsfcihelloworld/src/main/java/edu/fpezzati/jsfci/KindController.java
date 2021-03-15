@@ -32,4 +32,8 @@ public class KindController {
 	public Kind getKindById(String id) {
 		return em.find(Kind.class, UUID.fromString(id));
 	}
+
+	public void setEntityManager(EntityManager em) {
+		this.em = em;
+	}
 }
