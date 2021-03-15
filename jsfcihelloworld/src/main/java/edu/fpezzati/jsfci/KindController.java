@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceUnit;
 
 import edu.fpezzati.jsfci.model.Kind;
 
@@ -14,7 +14,7 @@ import edu.fpezzati.jsfci.model.Kind;
 @ApplicationScoped
 public class KindController {
 
-	@Inject
+	@PersistenceUnit(unitName = "jscihw")
 	private EntityManager em;
 
 	public List<Kind> getKinds() {

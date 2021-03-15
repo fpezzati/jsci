@@ -4,6 +4,7 @@
 	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-	<include author="fpezzati" file="./database/changesets/20210114.001.create.users.table.sql"/>
-	<include author="fpezzati" file="./database/changesets/20210301.001.create.kind.and.userkind.association.tables.sql"/>
+	<includeAll path="./database/changesets"/>
+	<include author="fpezzati" file="./database/testchangesets/20210114.002.insert.users.sql"/>
+	<include author="fpezzati" file="./database/testchangesets/20210315.001.insert.new.kind.sql"/>
 </databaseChangeLog>

@@ -2,7 +2,7 @@ package edu.fpezzati.jsfci;
 
 import java.util.Date;
 
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named(value = "helloworld")
