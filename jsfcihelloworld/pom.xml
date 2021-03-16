@@ -23,7 +23,7 @@
 		<PG_PORT>5432</PG_PORT>
 		<PG_DATABASE>postgres</PG_DATABASE>
 		<PG_USER>postgres</PG_USER>
-		<PG_PASSWORD>postgres_password</PG_PASSWORD>
+		<PG_PASSWORD>password</PG_PASSWORD>
 		<liquibase.version>4.2.2</liquibase.version>
 		<hibernate.version>5.4.27.Final</hibernate.version>
 	</properties>
