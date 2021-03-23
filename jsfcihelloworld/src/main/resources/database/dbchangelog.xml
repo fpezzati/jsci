@@ -6,4 +6,5 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 	<include author="fpezzati" file="./database/changesets/20210114.001.create.users.table.sql"/>
 	<include author="fpezzati" file="./database/changesets/20210301.001.create.kind.and.userkind.association.tables.sql"/>
+	<include author="fpezzati" file="./database/changesets/20210323.001_002.create.move_something.sql"/>
 </databaseChangeLog>

@@ -63,6 +63,7 @@ public class KindControllerIT {
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.user", database.getUsername());
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.password", database.getPassword());
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
+		entityManagerFactoryProperties.put("javax.persistence.transactionType", "RESOURCE_LOCAL");
 		emf = Persistence.createEntityManagerFactory("jscihw", entityManagerFactoryProperties);
 	}
 
