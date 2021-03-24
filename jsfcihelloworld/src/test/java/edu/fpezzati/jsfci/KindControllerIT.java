@@ -7,13 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.jboss.weld.junit5.EnableWeld;
+import org.jboss.weld.junit5.WeldInitiator;
+import org.jboss.weld.junit5.WeldSetup;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,6 +27,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import edu.fpezzati.jsfci.model.Kind;
+import jakarta.inject.Inject;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
@@ -36,6 +38,9 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 @EnableWeld
 @Testcontainers
 public class KindControllerIT {
+
+	@WeldSetup
+	public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().enableDiscovery());
 
 	@Container
 	private static PostgreSQLContainer<?> database = new PostgreSQLContainer<>(DockerImageName.parse("postgres:10"));
@@ -72,7 +77,7 @@ public class KindControllerIT {
 		em = emf.createEntityManager();
 		transaction = em.getTransaction();
 		transaction.setRollbackOnly();
-		sut = new KindController();
+//		sut = new KindController();
 		sut.setEntityManager(em);
 	}
 
