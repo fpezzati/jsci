@@ -39,6 +39,8 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 @Testcontainers
 public class KindControllerIT {
 
+	private static long start = System.currentTimeMillis();
+
 	@WeldSetup
 	public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().enableDiscovery());
 
@@ -56,13 +58,15 @@ public class KindControllerIT {
 	public static void initOnce() throws IOException, SQLException, LiquibaseException {
 		database.waitingFor(Wait.forLogMessage(".*database system is ready*\\s", 1));
 		database.start();
+		System.out.println(String.format("Container takes: %d", System.currentTimeMillis() - start));
 
-		System.out.println("database jdbc url: " + database.getJdbcUrl() + ", user: " + database.getUsername() + ", password: " + database.getPassword());
-
+		long liquibaseTime = System.currentTimeMillis();
 		Liquibase liquibase = new Liquibase("./database/testdbchangelog.xml", new ClassLoaderResourceAccessor(), DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(DriverManager.getConnection(database.getJdbcUrl(), database.getUsername(), database.getPassword()))));
 		liquibase.update(new Contexts());
 		liquibase.close();
+		System.out.println(String.format("Liquibase takes: %d", System.currentTimeMillis() - liquibaseTime));
 
+		long entityManagerTime = System.currentTimeMillis();
 		Map<String,String> entityManagerFactoryProperties = new HashMap<>();
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.url", database.getJdbcUrl());
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.user", database.getUsername());
@@ -70,6 +74,8 @@ public class KindControllerIT {
 		entityManagerFactoryProperties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
 		entityManagerFactoryProperties.put("javax.persistence.transactionType", "RESOURCE_LOCAL");
 		emf = Persistence.createEntityManagerFactory("jscihw", entityManagerFactoryProperties);
+		System.out.println(String.format("Creating an entity manager factory takes: %d", System.currentTimeMillis() - entityManagerTime));
+		System.out.println(String.format("Globally, test initialization takes: %d", System.currentTimeMillis() - start));
 	}
 
 	@BeforeEach
