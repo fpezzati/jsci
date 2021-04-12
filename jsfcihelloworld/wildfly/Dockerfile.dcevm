@@ -9,12 +9,11 @@ ADD ./configure.and.run.wildfly.sh /tmp/
 # DOWNLOAD DCEVM
 RUN curl --silent -L https://github.com/TravaOpenJDK/trava-jdk-11-dcevm/releases/download/dcevm-11.0.10+3/java11-openjdk-dcevm-linux.tar.gz > /tmp/java11dcevm.tar.gz
 RUN chmod +x /tmp/java11dcevm.tar.gz
-RUN mkdir /tmp/java11dcevm
 RUN tar -xzf /tmp/java11dcevm.tar.gz -C /tmp/
 # PATCH CURRENT JVM WITH DCEVM
-COPY /tmp/dcevm-11.0.10+3/lib/server/libjvm.so /usr/lib/jvm/java-11-openjdk-11.0.8.10-0.el7_8.x86_64/lib/server/
-# CONTINUE CON
 USER root
+RUN cp /tmp/dcevm-11.0.10+3/lib/server/libjvm.so /usr/lib/jvm/java-11-openjdk-11.0.8.10-0.el7_8.x86_64/lib/server/
+# CONTINUE CON
 RUN chmod +x /tmp/configure.and.run.wildfly.sh
 USER jboss
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
